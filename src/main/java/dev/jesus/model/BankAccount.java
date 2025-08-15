@@ -50,4 +50,24 @@ public class BankAccount {
     System.out.println("Tasa anual: " + anualRate + "%");
     System.out.println("Comisión mensual: " + monthlyFee);
   }
+
+  public float getBalance() {
+    return balance;
+  }
+
+  public int getNumberOfDeposits() {
+    return numberOfDeposits;
+  }
+
+  public int getNumberOfWithdrawals() {
+    return numberOfWithdrawals;
+  }
+
+  public float getAnualRate() {
+    return anualRate;
+  }
+
+  public float getMonthlyFee() {
+    return monthlyFee;
+  }
 }
