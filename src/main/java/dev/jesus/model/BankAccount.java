@@ -39,7 +39,8 @@ public class BankAccount {
   }
 
   public void monthlyStatement() {
-
+    balance -= monthlyFee;
+    calculateMonthlyInterest();
   }
 
   public void printAccountDetails() {
