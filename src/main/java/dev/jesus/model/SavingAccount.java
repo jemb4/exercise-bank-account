@@ -46,7 +46,9 @@ public class SavingAccount extends BankAccount {
   public void printAccountDetails() {
     System.out.println("Saldo: " + getBalance());
     System.out.println("Comisión Mensual: " + getMonthlyFee());
-    System.out.println("Saldo: " + getBalance());
+    System.out.println("Transacciones realizadas: %s consignaciones y %s retiros".formatted(
+        getNumberOfDeposits(),
+        getNumberOfWithdrawals()));
   }
 
 }
