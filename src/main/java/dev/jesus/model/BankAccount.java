@@ -43,6 +43,10 @@ public class BankAccount {
   }
 
   public void printAccountDetails() {
-
+    System.out.println("Saldo: " + balance);
+    System.out.println("Número de consignacones: " + numberOfDeposits);
+    System.out.println("Número de retiros: " + numberOfWithdrawals);
+    System.out.println("Tasa anual: " + anualRate + "%");
+    System.out.println("Comisión mensual: " + monthlyFee);
   }
 }
