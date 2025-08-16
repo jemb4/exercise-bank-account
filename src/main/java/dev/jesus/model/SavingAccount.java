@@ -36,7 +36,7 @@ public class SavingAccount extends BankAccount {
     if (getNumberOfWithdrawals() > 4)
       extraFees = getNumberOfWithdrawals() - 4;
 
-    setMonthlyFee(extraFees);
+    setMonthlyFee(extraFees * 1000);
 
     super.monthlyStatement();
 
@@ -49,6 +49,10 @@ public class SavingAccount extends BankAccount {
     System.out.println("Transacciones realizadas: %s consignaciones y %s retiros".formatted(
         getNumberOfDeposits(),
         getNumberOfWithdrawals()));
+  }
+
+  public boolean getIsActive() {
+    return isActive;
   }
 
 }

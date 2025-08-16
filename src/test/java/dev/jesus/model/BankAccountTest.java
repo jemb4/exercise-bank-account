@@ -23,7 +23,6 @@ public class BankAccountTest {
   void setUp() {
     System.setOut(new PrintStream(outputStreamCaptor));
     bankAccount = new BankAccount(100, 10);
-
   }
 
   @AfterEach
