@@ -70,4 +70,9 @@ public class BankAccount {
   public float getMonthlyFee() {
     return monthlyFee;
   }
+
+
+  public void setMonthlyFee(float monthlyFee) {
+    this.monthlyFee = monthlyFee;
+  }
 }
