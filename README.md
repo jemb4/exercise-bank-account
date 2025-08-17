@@ -55,7 +55,47 @@ mvn clean install
 
 ## 📊 UML
 
+```mermaid
+classDiagram
+        BankAccount <|-- CheckingAccount
+        BankAccount <|-- SavingAccount
+
+        class BankAccount {
+          -float balance
+          -int numberOfDeposits
+          -int numberOfWithdrawals
+          -float anualRate
+          -float monthlyFee
+          +BankAccount(float balance, float anualRate)
+          +deposit(float amount)
+          +withdraw(float amount)
+          +calculateMonthlyInterest()
+          +monthlyStatement()
+          +printAccountDetails()
+        }
+
+        class CheckingAccount {
+          -int overdraft
+          +CheckingAccount(float balance, float anualRate)
+          +withdraw(float amount)
+          +deposit(float amount)
+          +monthlyStatement()
+          +printAccountDetails()
+        }
+
+        class SavingAccount {
+          -boolean isAcive
+          +SavingAccount(float balance, float anualRate)
+          +deposit(float amount)
+          +withdraw(float amount)
+          +monthlyStatement()
+          +printAccountDetails()
+          +updateActiveStatus()
+        }
+
+```
+
 ## 📸 Test Coverage
 
-![Cobertura de tests](./image.png)  
+![Cobertura de tests](./coverage.png)  
 _(captura de VSCode)_
