@@ -57,5 +57,5 @@ mvn clean install
 
 ## 📸 Test Coverage
 
-![Cobertura de tests](./coverage.png)  
+![Cobertura de tests](./image.png)  
 _(captura de VSCode)_
