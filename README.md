@@ -3,7 +3,7 @@
 [![Java](https://img.shields.io/badge/Java-21-blue?logo=openjdk)](https://www.oracle.com/java/)
 [![JUnit](https://img.shields.io/badge/JUnit-5-green?logo=junit5)](https://junit.org/junit5/)
 [![Maven](https://img.shields.io/badge/Maven-3.9.6-red?logo=apachemaven)](https://maven.apache.org/)
-[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen?logo=codecov)](#)
+[![Coverage](https://img.shields.io/badge/Coverage-97%25-brightgreen?logo=codecov)](#)
 
 ## 📌 Descripción
 
