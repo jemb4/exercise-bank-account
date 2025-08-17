@@ -18,11 +18,13 @@ public class CheckingAccountTest {
   private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
   private CheckingAccount checkingAccount;
+  private CheckingAccount checkingAccountLowBalance;
 
   @BeforeEach
   void setUp() {
     System.setOut(new PrintStream(outputStreamCaptor));
     checkingAccount = new CheckingAccount(10000, 100);
+    checkingAccountLowBalance = new CheckingAccount(100, 100);
   }
 
   @AfterEach
@@ -31,13 +33,82 @@ public class CheckingAccountTest {
   }
 
   @Test
-  void testDeposit() {
+  void testWithdraw_WhenAmount_IsGreater_ThanBalance() {
+    float expectedBalance = 0;
+    float expectedOverdraft = 900;
 
+    checkingAccountLowBalance.withdraw(1000);
+    float resultBalance = checkingAccountLowBalance.getBalance();
+    float resultOverdraft = checkingAccountLowBalance.getOverdraft();
+
+    assertThat(expectedBalance, is(equalTo(resultBalance)));
+    assertThat(expectedOverdraft, is(equalTo(resultOverdraft)));
   }
 
   @Test
-  void testGetOverdraft() {
+  void testWithdraw_WhenAmount_IsLower_ThanBalance() {
+    float expectedBalance = 9900;
+    float expectedOverdraft = 0;
 
+    checkingAccount.withdraw(100);
+    float resultBalance = checkingAccount.getBalance();
+    float resultOverdraft = checkingAccount.getOverdraft();
+
+    assertThat(expectedBalance, is(equalTo(resultBalance)));
+    assertThat(expectedOverdraft, is(equalTo(resultOverdraft)));
+  }
+
+  @Test
+  void testDeposit_WhenOverdraftedAnd_AmountGreaterThanOverDraft() {
+    checkingAccountLowBalance.withdraw(200);
+    float expectedBalance = 100;
+    float expectedOverdraft = 0;
+
+    checkingAccountLowBalance.deposit(200);
+    float resultBalance = checkingAccountLowBalance.getBalance();
+    float resultOverdraft = checkingAccountLowBalance.getOverdraft();
+
+    assertThat(expectedBalance, is(equalTo(resultBalance)));
+    assertThat(expectedOverdraft, is(equalTo(resultOverdraft)));
+  }
+
+  @Test
+  void testDeposit_WhenOverdraftedAnd_AmountLessThanOverDraft() {
+    checkingAccountLowBalance.withdraw(200);
+    float expectedBalance = 0;
+    float expectedOverdraft = 50;
+
+    checkingAccountLowBalance.deposit(50);
+    float resultBalance = checkingAccountLowBalance.getBalance();
+    float resultOverdraft = checkingAccountLowBalance.getOverdraft();
+
+    assertThat(expectedOverdraft, is(equalTo(resultOverdraft)));
+    assertThat(expectedBalance, is(equalTo(resultBalance)));
+  }
+
+  @Test
+  void testDeposit_WhenOverdraftedAnd_AmountEqualThanOverDraft() {
+    checkingAccountLowBalance.withdraw(200);
+    float expectedBalance = 0;
+    float expectedOverdraft = 0;
+
+    checkingAccountLowBalance.deposit(100);
+    float resultBalance = checkingAccountLowBalance.getBalance();
+    float resultOverdraft = checkingAccountLowBalance.getOverdraft();
+
+    assertThat(expectedBalance, is(equalTo(resultBalance)));
+    assertThat(expectedOverdraft, is(equalTo(resultOverdraft)));
+  }
+
+  @Test
+  void testDeposit_Wheitout_Overdraft() {
+    float deposit = 100;
+    float expected = 10100;
+
+    checkingAccount.deposit(deposit);
+    float result = checkingAccount.getBalance();
+
+    assertThat(result, is(equalTo(expected)));
   }
 
   @Test
@@ -68,10 +139,5 @@ public class CheckingAccountTest {
     assertTrue(outputStreamCaptor.toString().contains(stringExpected2));
     assertTrue(outputStreamCaptor.toString().contains(stringExpected3));
     assertTrue(outputStreamCaptor.toString().contains(stringExpected4));
-  }
-
-  @Test
-  void testWithdraw() {
-
   }
 }

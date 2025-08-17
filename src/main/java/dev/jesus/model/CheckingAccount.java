@@ -25,21 +25,21 @@ public class CheckingAccount extends BankAccount {
 
   @Override
   public void deposit(float amount) {
-    boolean isOverdraft = overdraft > 0;
+    boolean isOverdrafted = overdraft > 0;
 
-    if (isOverdraft && overdraft == amount) {
+    if (isOverdrafted && overdraft == amount) {
       overdraft = 0;
       return;
     }
 
-    if (isOverdraft && overdraft > amount) {
+    if (isOverdrafted && overdraft > amount) {
       overdraft -= amount;
       return;
     }
 
-    if (isOverdraft && overdraft < amount) {
-      overdraft = 0;
+    if (isOverdrafted && overdraft < amount) {
       super.deposit(amount - overdraft);
+      overdraft = 0;
       return;
     }
 
